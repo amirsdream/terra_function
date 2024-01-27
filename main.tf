@@ -158,13 +158,7 @@ resource "azurerm_key_vault_access_policy" "linux-user-key-vault-access-policy" 
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
     key_vault_id = azurerm_key_vault.linux-key-vault.id
-    key_permissions = [
-      "Get",
-      "List",
-      "Create",
-      "Update",
-      "Delete"
-    ]
+
     secret_permissions = [
       "Get",
       "List",
@@ -172,12 +166,7 @@ resource "azurerm_key_vault_access_policy" "linux-user-key-vault-access-policy" 
       "Delete",
       "Purge"
     ]
-    storage_permissions = [
-      "Get",
-      "List",
-      "Set",
-      "Delete"
-    ]
+    
 }
 
 resource "azurerm_key_vault_access_policy" "linux-app-key-vault-access-policy" {
@@ -185,16 +174,12 @@ resource "azurerm_key_vault_access_policy" "linux-app-key-vault-access-policy" {
   key_vault_id = azurerm_key_vault.linux-key-vault.id
   tenant_id = data.azurerm_client_config.current.tenant_id
   object_id = azurerm_linux_function_app.linux-python-linux-function-app.identity[0].principal_id
-
-  key_permissions = [
-    "Get",
-    "List",
-  ]
   
   secret_permissions = [
     "Get",
     "List",
   ]
+
 }
 
 resource "azurerm_key_vault_secret" "linux-key-vault-key" {
